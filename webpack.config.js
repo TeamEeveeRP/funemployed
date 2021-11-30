@@ -1,7 +1,8 @@
 const path = require('path');
 const AutoPrefixer = require('autoprefixer');
 
-const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const mode =
+  process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
   mode,
@@ -49,23 +50,18 @@ module.exports = {
 
   devServer: {
     static: path.join(__dirname, 'public'),
-
     compress: true,
-
     port: 8080,
-
     hot: true,
-
     historyApiFallback: true,
-
     proxy: {
       '/api': 'http://localhost:3000',
     },
   },
+  
   resolve: {
     extensions: ['.js', '.jsx'],
   },
 
   devtool: 'eval',
-
 };

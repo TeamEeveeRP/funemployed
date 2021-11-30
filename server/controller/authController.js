@@ -1,6 +1,4 @@
-const db = require('../models/evModel');
 const bcrypt = require('bcryptjs');
-
 
 const authController = {
   hashPassword(req, res, next) {
@@ -11,6 +9,6 @@ const authController = {
     res.locals.hashed = hash;
     return next();
   },
-}
+};
 
 module.exports = authController;
