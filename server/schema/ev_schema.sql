@@ -11,12 +11,11 @@ CREATE TABLE Users (
 
 CREATE TABLE JobCard (
   "_id" bigserial NOT NULL,
-  "user_id" bigserial NOT NULL,
+  "user_id" bigint NOT NULL,
   "job_title" varchar NOT NULL,
   "company" varchar NOT NULL,
   "link" varchar NOT NULL,
-  "status" varchar NOT NULL,
-  "date_applied" varchar,
+  "status" varchar,
   "notes" varchar,
   PRIMARY KEY ("_id"),
   FOREIGN KEY ("user_id") REFERENCES Users("_id")
@@ -24,7 +23,7 @@ CREATE TABLE JobCard (
 
 CREATE TABLE Sessions (
   "_id" bigserial NOT NULL,
-  "user_id" bigserial NOT NULL,
+  "user_id" bigint NOT NULL,
   PRIMARY KEY ("_id"),
   FOREIGN KEY ("user_id") REFERENCES Users("_id")
 );

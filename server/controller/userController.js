@@ -28,10 +28,7 @@ const userController = {
 
         return next();
       })
-      .catch((err) => {
-        console.log('createUser error');
-        return next(err);
-      });
+      .catch((err) => next(err));
   },
 };
 
