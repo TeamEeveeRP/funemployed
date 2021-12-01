@@ -29,26 +29,34 @@ router.post(
   }
 );
 
+router.post(
+  '/jobs/:userId',
+  dashboardController.createJobCard,
+  dashboardController.getJobCards,
+  (req, res) => {
+    res.status(200).json(res.locals.cards);
+  }
+);
+
+router.delete(
+  '/jobs/:userId/:cardId',
+  dashboardController.deleteJobCard,
+  dashboardController.getJobCards,
+  (req, res) => {
+    res.status(200).json(res.locals.cards);
+  }
+);
+
 router.get(
   '/home/:userId',
-  // In this first middleware, query to DB to fetch all job cards for 'userid'
-  dashboardController.getUserCards,
-  // Send as array of objects
+  dashboardController.getJobCards,
   (req, res) => {
-    res.status(200).send('in /dashboard');
+    res.status(200).json(res.locals.cards);
   }
 );
 
-router.post(
-  '/jobs/:userid',
-  // JSON bbject sent from client
-  (req, res) => {
-    res.status(200).send('job card added');
-  }
-);
-
-router.get('/', (req, res) => {
-  return res.status(200).send('in /api');
-});
+// router.get('/', (req, res) => {
+//   return res.status(200).send('in /api');
+// });
 
 module.exports = router;
