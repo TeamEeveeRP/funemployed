@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 
-
+import logo from '../../media/fe-logo.png';
 
 const Login = () => {
     const [usernameInput, setUsername] = useState('');
@@ -42,10 +42,30 @@ const Login = () => {
 
     return (
       <>
-          <input name="username" placeholder="username" onChange={e => setUsername(e.target.value)}></input>
-          <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}></input>
-          <button name="login" onClick={handleSubmit}>Log In</button>
-          <div className="mt-4">Don't have an account? <Link to="/signup">Sign Up</Link></div>
+        <header>
+          <img src={logo} alt="funemployed logo"></img>
+        </header>
+        <input
+          name="username"
+          placeholder="username"
+          onChange={e => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button
+          name="login"
+          onClick={handleSubmit}>
+          Log In
+        </button>
+        <div className="mt-4">
+          Don't have an account?
+          <Link to="/signup">
+            Sign Up
+          </Link>
+        </div>
       </>   
     )
 }
