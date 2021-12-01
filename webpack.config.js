@@ -7,7 +7,7 @@ const mode =
 module.exports = {
   mode,
 
-  entry: './src/App.jsx',
+  entry: ['regenerator-runtime/runtime.js', './src/App.jsx'],
 
   output: {
     filename: 'bundle.js',

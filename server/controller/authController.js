@@ -13,12 +13,16 @@ const authController = {
   },
 
   verifyUser(req, res, next) {
-    const { username, password } = req.body;
-    const verifyCredQuery = 'SELECT * FROM Users WHERE username = $1';
+    console.log('signins req.body: ', req.body)
 
+    const { username, password } = req.body;
+
+    const verifyCredQuery = 'SELECT * FROM Users WHERE username = $1';
+    // console.log(username, 'pw: ', password)
     db.query(verifyCredQuery, [username])
       .then(data => {
         console.log('verifying user')
+        console.log()
         if (bcrypt.compareSync(password, data.rows[0].password)) {
           const user = {
             userId: data.rows[0]._id,

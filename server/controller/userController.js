@@ -2,7 +2,7 @@ const db = require('../models/evModel');
 
 const userController = {
   createUser(req, res, next) {
-    const { name, username } = req.body;
+    const { fullName: name, username } = req.body;
     const { hashed } = res.locals;
     const params = [name, username, hashed];
     const createUserQuery =

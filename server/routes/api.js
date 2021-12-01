@@ -20,7 +20,7 @@ router.post(
 );
 
 router.post(
-  '/signin',
+  '/login',
   authController.verifyUser,
   // cookieController.setSSIDCookie,
   // sessionController.startSession,
@@ -30,7 +30,7 @@ router.post(
 );
 
 router.get(
-  '/dashboard/:userid',
+  '/home/:userId',
   // In this first middleware, query to DB to fetch all job cards for 'userid'
   dashboardController.getUserCards,
   // Send as array of objects
@@ -45,7 +45,7 @@ router.post(
   (req, res) => {
     res.status(200).send('job card added');
   }
-)
+);
 
 router.get('/', (req, res) => {
   return res.status(200).send('in /api');
