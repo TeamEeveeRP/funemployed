@@ -30,7 +30,7 @@ router.post(
 );
 
 router.get(
-  '/home/:userId',
+  '/jobs/:userId',
   // In this first middleware, query to DB to fetch all job cards for 'userid'
   dashboardController.getUserCards,
   // Send as array of objects

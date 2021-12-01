@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const Signup = () => {
+const Signup = (props) => {
   const [ fullName, setFullName ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ userId, setUserId] = useState('');
   
+  const navigate = useNavigate();
+
+  const { setIsLoggedIn, setUserState } = props;
+
   const loginObj = {
     fullName,  
     username,
@@ -25,6 +29,12 @@ const Signup = () => {
     .then(res => res.json())
     .then(data => {
       console.log('data: ', data);
+      setIsLoggedIn(true)
+      setUserState({
+        userId: data.userId,
+        username: data.username,
+        fullName: data.name,
+      })
       useNavigate("/home", {state: userId});
     })
     .catch((err) => {

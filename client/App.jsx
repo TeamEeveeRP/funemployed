@@ -7,14 +7,26 @@ import { BrowserRouter as Router, Route, Routes, NavLink, Link, useRouteMatch, u
 import './sass/styles.scss';
 
 const App = () => {
-  // const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [ userState, setUserState ] = useState({
+    userId: null,
+    username: null,
+    fullName: null,
+  });
 
+  function getIsLoggedIn() {
+    return isLoggedIn;
+  }
+
+  function getUserState() {
+    return userState;
+  }
   return (
     <Router> 
       <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/home" element={<HomeContainer/>} />
-        <Route path="/signup" element={<Signup/>} />
+        <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} setUserState={setUserState}/>} />
+        <Route path="/home" element={<HomeContainer getIsLoggedIn={getIsLoggedIn} setIsLoggedIn={setIsLoggedIn} getUserState={getUserState} setUserState={setUserState}/>} />
+        <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} setUserState={setUserState}/>} />
       </Routes>
     </Router>
   )

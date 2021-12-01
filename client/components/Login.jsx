@@ -4,14 +4,15 @@ import 'regenerator-runtime/runtime';
 
 
 
-const Login = () => {
+const Login = (props) => {
     const [usernameInput, setUsername] = useState('');
     const [passwordInput, setPassword] = useState('');
     const [userVerified, setUserVerified] = useState(false);
     const [userId, setUserId] = useState('');
-
     const navigate = useNavigate();
-
+    
+    const { setIsLoggedIn, setUserState } = props;
+    
     const loginObj = {
       usernameInput,
       passwordInput
@@ -29,7 +30,13 @@ const Login = () => {
       .then(data => {
         console.log('data: ', data);
         alert(`Welcome, ${data.name}`);
-        setUserId(data.userId);
+        // setUserId(data.userId);
+        setIsLoggedIn(true)
+        setUserState({
+          userId: data.userId,
+          username: data.username,
+          fullName: data.name,
+        })
         navigate("/home", {state: data.userId});
       })
       .catch(err => {
