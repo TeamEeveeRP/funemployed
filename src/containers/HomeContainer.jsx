@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CreateJobCard from './components/CreateJobCard';
-import JobContainer from './containers/JobContainer';
-import './sass/styles.scss';
+import CreateJobCard from '../components/CreateJobCard';
+import JobContainer from '../containers/JobContainer';
+import '../sass/styles.scss';
 
 
 const HomeContainer = () => {

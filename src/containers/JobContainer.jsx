@@ -5,7 +5,7 @@ import JobCard from '../components/JobCard';
 const CardList = (  ) => {
   const array1 = [{
     name: 'Facebook',
-    link: 'facebook.com',
+    link: 'https://www.facebook.com/',
     title: 'software engineer',
     notes: 'great company'
 }, {
@@ -17,7 +17,7 @@ const CardList = (  ) => {
   return (
     <ul>
       {array1.map(job => {
-        return <JobCard name={job.name} link={job.link} title={job.title} notes={job.notes} key={job.id}/>;
+        return <JobCard name={job.company} link={job.link} title={job.job_title} notes={job.notes} key={job._id} status={job.status}/>;
       })}
     </ul>
 

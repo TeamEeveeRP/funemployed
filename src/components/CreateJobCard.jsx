@@ -64,8 +64,8 @@ const CreateJobCard = props => {
         <input id="jobTitle" onChange={titleOnChange}></input>
         <h3>Link to job description:</h3>
         <input id="linkToJobDesc" onChange={linkOnChange}></input>
-        <h3>Additional notes:</h3>
-        <input id="notes" onChange={notesOnChange}></input>
+        <h3>Additional notes: </h3>
+        <textarea id="notes" onChange={notesOnChange}></textarea>
         <br></br>
         <button type="button" onClick={saveJob}>Add Job</button>
       </form>

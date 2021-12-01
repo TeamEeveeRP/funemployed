@@ -6,7 +6,7 @@ const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development
 module.exports = {
   mode,
 
-  entry: './src/App.jsx',
+  entry: ['regenerator-runtime/runtime.js', './src/App.jsx'],
 
   output: {
     filename: 'bundle.js',

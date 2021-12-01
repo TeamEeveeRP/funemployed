@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import HomeContainer from './containers/HomeContainer';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { BrowserRouter as Router, Route, Switch, NavLink, Link, useRouteMatch, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, NavLink, Link, useRouteMatch, useParams } from 'react-router-dom';
 import './sass/styles.scss';
 
 const App = () => {
   return (
     <Router> 
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/home" component={HomeContainer} />
-        <Route path="/signup" component={Signup} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Login/>} />
+        <Route path="/home" element={<HomeContainer/>} />
+        <Route path="/signup" element={<Signup/>} />
+      </Routes>
     </Router>
   )
 };
