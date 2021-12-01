@@ -14,7 +14,7 @@ router.post(
   // cookieController.setSSIDCookie,
   // sessionController.startSession,
   (req, res) => {
-    res.status(200).json(res.locals.user);
+    return res.status(200).json(res.locals.user);
   }
 );
 
@@ -24,7 +24,7 @@ router.post(
   // cookieController.setSSIDCookie,
   // sessionController.startSession,
   (req, res) => {
-    res.status(200).json(res.locals.user);
+    return res.status(200).json(res.locals.user);
   }
 );
 
@@ -46,7 +46,7 @@ router.post(
 // )
 
 router.get('/', (req, res) => {
-  res.status(200).send('in /api');
+  return res.status(200).send('in /api');
 });
 
 module.exports = router;

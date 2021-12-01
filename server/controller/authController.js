@@ -1,10 +1,11 @@
 const bcrypt = require('bcryptjs');
 const db = require('../models/evModel');
 
+const SALT_WORK_FACTOR = 10;
+const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
+
 const authController = {
   hashPassword(req, res, next) {
-    const SALT_WORK_FACTOR = 10;
-    const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
     const { password } = req.body;
     const hash = bcrypt.hashSync(password, salt);
     res.locals.hashed = hash;
@@ -17,24 +18,22 @@ const authController = {
 
     db.query(verifyCredQuery, [username])
       .then(data => {
-        const user = data.rows[0];
+        console.log('verifying user')
         if (bcrypt.compareSync(password, data.rows[0].password)) {
           const user = {
-            userId: user._id,
-            name: user.name,
-            username: user.username,
+            userId: data.rows[0]._id,
+            name: data.rows[0].name,
+            username: data.rows[0].username,
             isLoggedIn: true,
           };
           res.locals.user = user;
-
+          console.log(res.locals.user)
           return next();
+        } else {
+          return next({ error: 'Username and/or Password is incorrect' });
         }
-
-        return next({ error: 'Username and/or Password is incorrect' });
       })
-      .catch(err => {
-        return next(err);
-      });
+      .catch(err => next(err));
   },
 };
 

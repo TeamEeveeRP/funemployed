@@ -3,7 +3,7 @@ content-type: application/json
 
 {   
     "name": "test",
-    "username": "test4235ddd2312g",
+    "username": "test",
     "password": "test"
 }
 
@@ -13,6 +13,7 @@ POST http://localhost:3000/api/signin
 content-type: application/json
 
 {   
-    "username": "test412g",
+    "username": "test",
     "password": "test"
 }
+

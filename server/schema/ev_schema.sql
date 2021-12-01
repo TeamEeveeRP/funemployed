@@ -36,4 +36,3 @@ INSERT INTO JobCard VALUES (1, 1, 'CEO', 'Codesmith', 'url', 'Applied'  );
 INSERT INTO JobCard VALUES (2, 2, 'CEO', 'Codesmith', 'url', 'Applied'  );
 INSERT INTO JobCard (user_id, job_title, company, link, status) VALUES ( 2, 'CEO', 'Facebook', 'facebook.com/ceo', 'Offered');
 
-//`INSERT INTO recipes (name, user_id, directions) VALUES ('${req.body.recipeName}', ${res.locals.userId}, '${req.body.instructions}');`
