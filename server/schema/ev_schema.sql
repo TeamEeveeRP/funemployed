@@ -17,6 +17,7 @@ CREATE TABLE JobCard (
   "link" varchar NOT NULL,
   "status" varchar NOT NULL,
   "date_applied" varchar,
+  "notes" varchar,
   PRIMARY KEY ("_id"),
   FOREIGN KEY ("user_id") REFERENCES Users("_id")
 );
