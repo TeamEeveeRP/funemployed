@@ -1,53 +1,27 @@
-const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
 const app = express();
 
-const apiRouter = require('./routes/api');
-// const loginRouter = require('./routes/login');
-// const signupRouter = require('./routes/signup');
-
 const PORT = 3000;
-/**
- * handler for parsing of request, body, and cookies ? <------
- */
+// Handler for parsing of request, body, and cookies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-/**
- * handler for static data
- */
+// Static data handling
 app.use(express.static(__dirname + '/public'));
 
-/**
- * Routes to our defined endpoints
- */
+// Routes to api router 
+const apiRouter = require('./routes/api.js');
 app.use('/api', apiRouter);
 
-/**
- * ? Route for Root endpoint
- */
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve('../public/index.html'));
-// });
+// Local error handler
+app.use((req, res) => res.status(404).send('404: PAGE DOES NOT EXIST'));
 
-/**
- * Error handler for non-existent endpoints
- */
-app.use('*', (req, res) => {
-  res.status(404).send('Not Found');
-});
-
-/**
- * Global Error handler
- */
+// Global error handler
 app.use((err, req, res, next) => res.status(500).json(err));
 
-/**
- * listen to PORT
- */
 app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));
 
 module.exports = app;

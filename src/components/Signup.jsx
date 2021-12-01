@@ -13,28 +13,33 @@ const Signup = () => {
     password,
   }
 
-  const postData = (body) => {
-      fetch('/api/signup', {
-          method: 'POST',
-          headers: {
-            'content-type': "application/JSON"          
-        },
-        body: JSON.stringify(body)
-      })
-      .catch((err) => {
-          console.log(err);
-          return alert("Username already taken");
-      })
-  }
+  const postData = () => {
+    fetch('/api/signup', {
+      method: 'POST',
+      headers: {
+        'content-type': "application/JSON"
+      },
+      body: JSON.stringify(loginObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('data: ', data);
+      window.location.replace('/home');
+    })
+    .catch((err) => {
+        console.log(err);
+        return alert("Username already taken");
+    })
+}
 
 
  return (
    <>
     <input name="name" placeholder="Full Name" onChange={e => setFullName(e.target.value)}></input>  
      <input name="username" placeholder="Username" onChange={e => setUsername(e.target.value)}></input>
-     <input name="password" placeholder="Password" onChange={e => setPassword(e.target.value)}></input>
+     <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}></input>
     <br/>
-     <button onSubmit={postData(loginObj)}>Sign up</button>
+     <button onClick={postData}>Sign up</button>
      <div className="mt-4">Have an account? <Link to="/">Log In</Link></div>
   </>
  )

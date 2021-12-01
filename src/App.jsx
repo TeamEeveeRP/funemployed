@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import HomeContainer from './containers/HomeContainer';
 import Login from './components/Login';
@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes, NavLink, Link, useRouteMatch, u
 import './sass/styles.scss';
 
 const App = () => {
+  // const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+
   return (
     <Router> 
       <Routes>
