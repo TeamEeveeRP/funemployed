@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 
 
@@ -8,7 +8,9 @@ const Login = () => {
     const [usernameInput, setUsername] = useState('');
     const [passwordInput, setPassword] = useState('');
     const [userVerified, setUserVerified] = useState(false);
-    const [userID, setUserID] = useState('');
+    const [userId, setUserId] = useState('');
+
+    const navigate = useNavigate();
 
     const loginObj = {
       usernameInput,
@@ -27,7 +29,8 @@ const Login = () => {
       .then(data => {
         console.log('data: ', data);
         alert(`Welcome, ${data.name}`);
-        window.location.replace('/home');
+        setUserId(data.userId);
+        navigate("/home", {state: data.userId});
       })
       .catch(err => {
         console.log(err);
@@ -45,7 +48,7 @@ const Login = () => {
           <input name="username" placeholder="username" onChange={e => setUsername(e.target.value)}></input>
           <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}></input>
           <button name="login" onClick={handleSubmit}>Log In</button>
-          <div className="mt-4">Don't have an account? <Link to="/signup">Sign Up</Link></div>
+          <div className="mt-4">Don't have an account? <Link to="/signup" >Sign Up</Link></div>
       </>   
     )
 }

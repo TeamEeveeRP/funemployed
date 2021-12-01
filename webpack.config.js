@@ -7,7 +7,7 @@ const mode =
 module.exports = {
   mode,
 
-  entry: ['regenerator-runtime/runtime.js', './src/App.jsx'],
+  entry: ['regenerator-runtime/runtime.js', './client/App.jsx'],
 
   output: {
     filename: 'bundle.js',
@@ -58,7 +58,7 @@ module.exports = {
       '/api': 'http://localhost:3000',
     },
   },
-  
+
   resolve: {
     extensions: ['.js', '.jsx'],
   },

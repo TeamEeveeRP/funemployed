@@ -5,7 +5,8 @@ import JobContainer from '../containers/JobContainer';
 import '../sass/styles.scss';
 
 
-const HomeContainer = () => {
+const HomeContainer = (props) => {
+  console.log('props', props);
     return (
         <div>
           <div id="inputJobCard">

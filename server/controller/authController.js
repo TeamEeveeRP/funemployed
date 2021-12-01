@@ -6,23 +6,23 @@ const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
 
 const authController = {
   hashPassword(req, res, next) {
-    const { password } = req.body;
+    const { passwordInput: password } = req.body;
     const hash = bcrypt.hashSync(password, salt);
     res.locals.hashed = hash;
     return next();
   },
 
   verifyUser(req, res, next) {
-    console.log('signins req.body: ', req.body)
+    console.log('signins req.body: ', req.body);
 
-    const { username, password } = req.body;
+    const { usernameInput: username, passwordInput: password } = req.body;
 
     const verifyCredQuery = 'SELECT * FROM Users WHERE username = $1';
     // console.log(username, 'pw: ', password)
     db.query(verifyCredQuery, [username])
-      .then(data => {
-        console.log('verifying user')
-        console.log()
+      .then((data) => {
+        console.log('verifying user');
+        console.log();
         if (bcrypt.compareSync(password, data.rows[0].password)) {
           const user = {
             userId: data.rows[0]._id,
@@ -31,13 +31,13 @@ const authController = {
             isLoggedIn: true,
           };
           res.locals.user = user;
-          console.log(res.locals.user)
+          console.log('res.locals.user', res.locals.user);
           return next();
         } else {
           return next({ error: 'Username and/or Password is incorrect' });
         }
       })
-      .catch(err => next(err));
+      .catch((err) => next(err));
   },
 };
 

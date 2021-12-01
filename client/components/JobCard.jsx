@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 
 
 const JobCard = (props) => {
-  const { name, link, title, notes } = props;
-  const [ status, setStatus ] = useState("Please Choose Status");
+  const { name, link, title, notes, status } = props;
+  const [ newStatus, setStatus ] = useState(status);
 
+  useEffect(() => {
+    
+  })
+
+  const postStatus = () => {
+    fetch('/api/updateStatus', {
+      method: 'POST',
+      headers: {
+        'Content-Type': "application/JSON"
+      },
+      body: JSON.stringify(newStatus)
+    })
+  }
 
     return (
         <Box sx={{  
@@ -23,10 +36,12 @@ const JobCard = (props) => {
 
             <h2>{name}</h2>
             <br></br>
-            <select className="status" value={status} onChange={e => {
-                setStatus(e.target.value)
+            <select className="status" value={newStatus} onChange={e => {
+                setStatus(e.target.value); 
+                postStatus(); // might invoke before setStatus is done
                }
             }>
+              
               <option className="status-type">Please Choose Status</option>
               <option className="status-type">Applied 👏</option>
               <option className="status-type">First Interview Scheduled 1️⃣</option>

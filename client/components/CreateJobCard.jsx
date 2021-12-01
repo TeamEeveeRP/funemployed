@@ -25,7 +25,7 @@ const CreateJobCard = props => {
       notes
     };
     console.log(body);
-    fetch('/api/jobs/:userid', {
+    fetch(`/api/jobs/:userId`, {
       method: 'POST',
       headers: {
         'Content-Type': "application/JSON"
@@ -35,6 +35,7 @@ const CreateJobCard = props => {
       .then(res => res.json())
       .then((data) => {
         console.log(data);
+        window.reload();
     })
     .catch(err => console.log(err));
 

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Signup = () => {
   const [ fullName, setFullName ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ userId, setUserId] = useState('');
   
   const loginObj = {
     fullName,  
@@ -24,7 +25,7 @@ const Signup = () => {
     .then(res => res.json())
     .then(data => {
       console.log('data: ', data);
-      window.location.replace('/home');
+      useNavigate("/home", {state: userId});
     })
     .catch((err) => {
         console.log(err);
