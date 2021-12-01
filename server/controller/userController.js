@@ -24,9 +24,7 @@ const userController = {
         
         return next();
       })
-      .catch(err => {
-        return next(err);
-      });
+      .catch(err => next(err));
   },
 };
 
