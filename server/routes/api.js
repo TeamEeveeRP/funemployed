@@ -4,30 +4,29 @@ const router = express.Router();
 
 const userController = require('../controller/userController');
 const authController = require('../controller/authController');
-const cookieController = require('../controller/cookieController');
-const sessionController = require('../controller/sessionController');
+// const cookieController = require('../controller/cookieController');
+// const sessionController = require('../controller/sessionController');
 
 router.post(
   '/signup',
   authController.hashPassword,
   userController.createUser,
-  // TODO:
-  cookieController.setSSIDCookie,
-  sessionController.startSession,
+  // cookieController.setSSIDCookie,
+  // sessionController.startSession,
   (req, res) => {
-    res.status(200).send('in /api/signup');
+    res.status(200).json(res.locals.user);
   }
 );
 
-// router.post(
-//   '/login',
-//   authController.verifyUser,
-//   cookieController.setSSIDCookie,
-//   sessionController.startSession,
-//   (req, res) => {
-//     res.status(200).send('in /api/login');
-//   }
-// );
+router.post(
+  '/signin',
+  authController.verifyUser,
+  // cookieController.setSSIDCookie,
+  // sessionController.startSession,
+  (req, res) => {
+    res.status(200).json(res.locals.user);
+  }
+);
 
 // router.get(
 //   '/dashboard/:userid',
