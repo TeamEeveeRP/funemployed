@@ -39,7 +39,7 @@ const Signup = (props) => {
     })
     .catch((err) => {
         console.log(err);
-        return alert("Username already taken");
+        alert("Username already taken");
     })
 }
 
@@ -51,7 +51,7 @@ const Signup = (props) => {
      </header>
      <input
        name="name"
-       placeholder="Full Name"
+       placeholder="Full name"
        onChange={(e) => setFullName(e.target.value)}
      />
      <input
@@ -64,10 +64,10 @@ const Signup = (props) => {
        placeholder="Password"
        onChange={(e) => setPassword(e.target.value)}
      />
-     <button className="log-in-sign-up" name="signup" onClick={postData}>
+     <button className="ls-btn" name="signup" onClick={postData}>
        Sign up
      </button>
-     <div>
+     <div className="account-options">
        Have an account?
        <Link to="/" className="log-in-sign-up">
          Log In

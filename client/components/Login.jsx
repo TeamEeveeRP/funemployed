@@ -27,7 +27,7 @@ const Login = (props) => {
       .then(res => res.json())
       .then(data => {
         console.log('data: ', data);
-        alert(`Welcome, ${data.name}`);
+        alert(`Welcome, ${data.name}!`);
         // setUserId(data.userId);
         setIsLoggedIn(true);
         setUserState({
@@ -57,18 +57,18 @@ const Login = (props) => {
         </header>
         <input
           name="username"
-          placeholder="username"
+          placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button name="login" onClick={handleSubmit}>
+        <button className="ls-btn" name="login" onClick={handleSubmit}>
           Log In
         </button>
-        <div>
+        <div className="account-options">
           Don't have an account?
           <Link to="/signup" className="log-in-sign-up">
             Sign Up

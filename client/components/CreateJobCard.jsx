@@ -43,7 +43,6 @@ const CreateJobCard = props => {
     .catch(err => console.log(err));
   };
 
-
   return (
     <Box sx={{  
       display: 'flex',
@@ -51,13 +50,12 @@ const CreateJobCard = props => {
       alignItems: 'center',
       alignSelf: 'center',
       width: 300,
-      backgroundColor: 'tan',
+      backgroundColor: '#CC98FF',
       marginTop: 5,
-      marginBottom: 5
-      
+      marginBottom: 5,
+      border: '1px solid'
     }}>
-      <h2>Create New Job Card</h2>
-      <form>
+      <form id="card">
         <h3>Company Name:</h3> 
         <input
           id="companyName"
@@ -75,7 +73,7 @@ const CreateJobCard = props => {
         />
         <h3>Additional notes: </h3>
         <textarea id="notes" onChange={notesOnChange} />
-        <button
+        <button id="add-job-btn"
           type="button"
           onClick={saveJob}
         >
