@@ -3,7 +3,12 @@ import Box from '@mui/material/Box';
 
 
 const JobCard = (props) => {
-  const { name, link, title, notes, status } = props;
+  const { name, link, title} = props;
+  let { notes, status } = props;
+
+  // cannot have parts state set to null, so we change the null values to undefined or an empty stri
+  status = status ? status : undefined;
+  notes = notes ? notes : '';
   const [ newStatus, setStatus ] = useState(status);
 
   useEffect(() => {
@@ -26,21 +31,18 @@ const JobCard = (props) => {
             flexDirection: 'column',
             alignItems: 'center',
             alignSelf: 'center',
+            backgroundColor: 'whitesmoke',
             width: 300,
             height: 300,
             marginTop: 5,
             marginBottom: 5
-            
         }}>
-            <br/>
             <h2>{name}</h2>
-            <br></br>
             <select className="status" value={newStatus} onChange={e => {
-                setStatus(e.target.value); 
-                postStatus(); // might invoke before setStatus is done
-               }
-            }>
-              
+              setStatus(e.target.value); 
+              postStatus(); // might invoke before setStatus is done
+            }}
+            >
               <option className="status-type">Please Choose Status</option>
               <option className="status-type">Applied 👏</option>
               <option className="status-type">First Interview Scheduled 1️⃣</option>
@@ -57,7 +59,6 @@ const JobCard = (props) => {
             </li>
             <li>Additional notes: <br/>{notes}</li>
             </ul>
-
         </Box>
     )
 }

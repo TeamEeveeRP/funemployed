@@ -14,6 +14,7 @@ const authController = {
   },
 
   verifyUser(req, res, next) {
+    console.log('verifyusers req.body: ', req.body)
     const { usernameInput: username, passwordInput: password } = req.body;
     const verifyCredQuery = 'SELECT * FROM Users WHERE username = $1';
 
@@ -27,7 +28,7 @@ const authController = {
             isLoggedIn: true,
           };
           res.locals.user = user;
-
+          // console.log('user in verifyuser: ', user)
           return next();
         } else {
           return next({ error: 'Incorrect credentials. Please try again.' });

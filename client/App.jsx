@@ -9,9 +9,9 @@ import './sass/styles.scss';
 const App = () => {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
   const [ userState, setUserState ] = useState({
-    userId: null,
-    username: null,
-    fullName: null,
+    userId: '',
+    username: '',
+    fullName: '',
   });
   
   const getIsLoggedIn = () => isLoggedIn;
