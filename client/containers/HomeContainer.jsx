@@ -16,8 +16,8 @@ const HomeContainer = (props) => {
   
   return (
     <div id="home-container">
+      <img src={logo} alt="funemployed logo" />
       <div id="inputJobCard">
-        <img src={logo} alt="funemployed logo" />
         <CreateJobCard
           getUserState={getUserState}
           setUserState={setUserState}
