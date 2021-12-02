@@ -14,13 +14,11 @@ const authController = {
   },
 
   verifyUser(req, res, next) {
-    const { username, password } = req.body;
+    const { usernameInput: username, passwordInput: password } = req.body;
     const verifyCredQuery = 'SELECT * FROM Users WHERE username = $1';
 
     db.query(verifyCredQuery, [username])
       .then((data) => {
-        console.log('verifying user');
-        console.log();
         if (bcrypt.compareSync(password, data.rows[0].password)) {
           const user = {
             userId: data.rows[0]._id,
@@ -29,6 +27,7 @@ const authController = {
             isLoggedIn: true,
           };
           res.locals.user = user;
+
           return next();
         } else {
           return next({ error: 'Incorrect credentials. Please try again.' });

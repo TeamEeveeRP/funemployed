@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import {useLocation} from "react-router-dom";
 import CreateJobCard from '../components/CreateJobCard';
 import JobContainer from '../containers/JobContainer';
 import '../sass/styles.scss';
+import logo from '../../media/fe-logo.png';
 
 
 const HomeContainer = (props) => {
-  // const {state} = useLocation();
-  // console.log(state);
   const { getIsLoggedIn, setIsLoggedIn, getUserState, setUserState} = props;
   
-    return (
-        <div>
-          <div id="inputJobCard">
-            <CreateJobCard/>
-          </div>
-          <div id="jobContainer">
-            <JobContainer getIsLoggedIn={getIsLoggedIn} setIsLoggedIn={setIsLoggedIn} getUserState={getUserState} setUserState={setUserState}/>
-          </div>
-        </div>
-      );
+  const [cardList, setCardList] = useState([]);
+
+  const getCardList = () => cardList;
+  
+  return (
+    <div id="home-container">
+      <div id="inputJobCard">
+        <img src={logo} alt="funemployed logo" />
+        <CreateJobCard
+          getUserState={getUserState}
+          setUserState={setUserState}
+          setCardList={setCardList}
+          getCardList={getCardList}
+        />
+      </div>
+      <div id="jobContainer">
+        <JobContainer
+          getIsLoggedIn={getIsLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          getUserState={getUserState}
+          setUserState={setUserState}
+          getCardList={getCardList}
+          setCardList={setCardList}
+        />
+      </div>
+    </div>
+  );
 }
 
 

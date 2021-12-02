@@ -28,12 +28,11 @@ const JobCard = (props) => {
             alignSelf: 'center',
             width: 300,
             height: 300,
-            backgroundColor: 'tan',
             marginTop: 5,
             marginBottom: 5
             
         }}>
-
+            <br/>
             <h2>{name}</h2>
             <br></br>
             <select className="status" value={newStatus} onChange={e => {

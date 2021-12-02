@@ -17,33 +17,34 @@ const CreateJobCard = props => {
   const [ link, linkOnChange ] = useInput('');
   const [ notes, notesOnChange ] = useInput('');
 
+  const { setCardList, getCardList, getUserState, setUserState } = props;
+
   const saveJob = () => {
+    const userState = getUserState();
+
     const body = {
       name,
       title,
       link,
       notes
     };
-    console.log(body);
-    fetch(`/api/jobs/:userId`, {
+
+    fetch(`/api/jobs/${userState.userId}`, {
       method: 'POST',
       headers: {
-        'Content-Type': "application/JSON"
+        'Content-Type': 'application/JSON'
       },
       body: JSON.stringify(body)
     })
-      .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-        window.reload();
+    .then(res => res.json())
+    .then(data => {
+      setCardList(data);
     })
     .catch(err => console.log(err));
-
-  }
+  };
 
 
   return (
-   
     <Box sx={{  
       display: 'flex',
       flexDirection: 'column',
@@ -55,22 +56,32 @@ const CreateJobCard = props => {
       marginBottom: 5
       
     }}>
-     {/* <div id="jobCard"> */}
       <h2>Create New Job Card</h2>
-      <br></br>
       <form>
         <h3>Company Name:</h3> 
-        <input id="companyName" onChange={nameOnChange}></input>
+        <input
+          id="companyName"
+          onChange={nameOnChange}
+        />
         <h3>Job Title:</h3>
-        <input id="jobTitle" onChange={titleOnChange}></input>
+        <input
+          id="jobTitle"
+          onChange={titleOnChange}
+        />
         <h3>Link to job description:</h3>
-        <input id="linkToJobDesc" onChange={linkOnChange}></input>
+        <input
+          id="linkToJobDesc"
+          onChange={linkOnChange}
+        />
         <h3>Additional notes: </h3>
-        <textarea id="notes" onChange={notesOnChange}></textarea>
-        <br></br>
-        <button type="button" onClick={saveJob}>Add Job</button>
+        <textarea id="notes" onChange={notesOnChange} />
+        <button
+          type="button"
+          onClick={saveJob}
+        >
+          Add Job
+        </button>
       </form>
-     {/* </div> */}
     </Box>
     
   );

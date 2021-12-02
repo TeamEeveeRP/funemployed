@@ -7,8 +7,6 @@ import logo from '../../media/fe-logo.png';
 const Login = (props) => {
     const [usernameInput, setUsername] = useState('');
     const [passwordInput, setPassword] = useState('');
-    const [userVerified, setUserVerified] = useState(false);
-    const [userId, setUserId] = useState('');
     const navigate = useNavigate();
     
     const { setIsLoggedIn, setUserState } = props;
@@ -31,53 +29,53 @@ const Login = (props) => {
         console.log('data: ', data);
         alert(`Welcome, ${data.name}`);
         // setUserId(data.userId);
-        setIsLoggedIn(true)
+        setIsLoggedIn(true);
         setUserState({
           userId: data.userId,
           username: data.username,
           fullName: data.name,
         })
-        navigate("/home", {state: data.userId});
+        navigate('/home', {
+          state: data.userId
+        });
       })
       .catch(err => {
         console.log(err);
         return alert("Invalid login");
       })
     };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await fetchData(loginObj);
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      fetchData(loginObj);
     };
 
     return (
-      <>
-        <header>
-          <img src={logo} alt="funemployed logo"></img>
+      <div id="login-container">
+        <header className="logo-header">
+          <img src={logo} alt="funemployed logo" />
         </header>
         <input
           name="username"
           placeholder="username"
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
           placeholder="password"
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          name="login"
-          onClick={handleSubmit}>
+        <button name="login" onClick={handleSubmit}>
           Log In
         </button>
-        <div className="mt-4">
+        <div>
           Don't have an account?
-          <Link to="/signup">
+          <Link to="/signup" className="log-in-sign-up">
             Sign Up
           </Link>
         </div>
-      </>   
-    )
-}
+      </div>
+    );
+};
 
 export default Login;

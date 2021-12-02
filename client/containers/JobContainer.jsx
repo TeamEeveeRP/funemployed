@@ -1,34 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import JobCard from '../components/JobCard';
+import 'regenerator-runtime/runtime';
 
-
-// const CardList = (data) => {
-// //   const data = [{
-// //     name: 'Facebook',
-// //     link: 'https://www.facebook.com/',
-// //     title: 'software engineer',
-// //     notes: 'great company'
-// // }, {
-// //   name: 'Facebook',
-// //   link: 'facebook.com',
-// //   title: 'software engineer',
-// //   notes: 'great company'
-// // }];
-//   return (
-//     <ul>
-//       {data.map(job => {
-//         return <JobCard userId={job.userId} name={job.company} link={job.link} title={job.job_title} notes={job.notes} key={job._id} status={job.status}/>;
-//       })}
-//     </ul>
-
-//   );
-// };
 
 const JobContainer = (props) => {
-  const { getIsLoggedIn, setIsLoggedIn, getUserState, setUserState } = props;
+  const { getIsLoggedIn, setIsLoggedIn, getUserState, setUserState, getCardList, setCardList } = props;
   console.log('users id: ', getUserState().userId)
-  const [cardList, useCardList] = useState([]);
-
+  // const [cardList, setCardList] = useState([]);
   
   useEffect(() => {
     // did get request 
@@ -40,29 +18,34 @@ const JobContainer = (props) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log('get job cards data: ', data);
-      useCardList(data);
+      console.log('DATA: ', data); //why is this not returning all values?
+      setCardList(data);
     })
     .catch((err) => {
       console.error(err)
     });
   }, []);
-  
+  console.log('getCardList data: ', getCardList())
+  const data = getCardList()
+  const cardData = data.map((job) => {
+    return (
+      <div key={job._id}>
+        <JobCard
+          key={job._id}
+          userId={job.userId}
+          name={job.company}
+          link={job.link}
+          title={job.job_title}
+          notes={job.notes}
+          status={job.status}
+        />
+      </div>
+    );
+  })
+
   return (
     <ul>
-      {cardList.map((job) => {
-        return (
-          <JobCard
-            userId={job.userId}
-            name={job.company}
-            link={job.link}
-            title={job.job_title}
-            notes={job.notes}
-            key={job._id}
-            status={job.status}
-          />
-        );
-      })}
+      {cardData}
     </ul>
   );
 }

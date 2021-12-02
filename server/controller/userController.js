@@ -12,8 +12,6 @@ const userController = {
     db.query(createUserQuery, params)
       .then((data) => {
         res.locals = {};
-        // TEMP LOGIC
-        console.log('inside usercontoller.creatuser');
         const splitData = data.rows[0].row.split(',');
         const user = {
           userId: (res.locals.userId = Number(splitData[0].substring(1))),

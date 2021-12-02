@@ -25,6 +25,7 @@ router.post(
   // cookieController.setSSIDCookie,
   // sessionController.startSession,
   (req, res) => {
+    // console.log('logins res.locals.user', res.locals.user);
     return res.status(200).json(res.locals.user);
   }
 );
@@ -47,7 +48,7 @@ router.delete(
   }
 );
 
-router.get('/home/:userId', dashboardController.getJobCards, (req, res) => {
+router.get('/jobs/:userId', dashboardController.getJobCards, (req, res) => {
   res.status(200).json(res.locals.cards);
 });
 

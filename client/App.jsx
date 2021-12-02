@@ -13,14 +13,10 @@ const App = () => {
     username: null,
     fullName: null,
   });
+  
+  const getIsLoggedIn = () => isLoggedIn;
+  const getUserState = () => userState;
 
-  function getIsLoggedIn() {
-    return isLoggedIn;
-  }
-
-  function getUserState() {
-    return userState;
-  }
   return (
     <Router> 
       <Routes>
